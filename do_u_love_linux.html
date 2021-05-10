@@ -1,0 +1,694 @@
+<!doctype html>
+<html>
+<head>
+<meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
+
+<style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color:#ffffff; --text-color:#333333; --select-text-bg-color:#B5D6FC; --select-text-font-color:auto; --monospace:"Lucida Console",Consolas,"Courier",monospace; --title-bar-height:20px; }
+.mac-os-11 { --title-bar-height:28px; }
+html { font-size: 14px; background-color: var(--bg-color); color: var(--text-color); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+body { margin: 0px; padding: 0px; height: auto; bottom: 0px; top: 0px; left: 0px; right: 0px; font-size: 1rem; line-height: 1.42857; overflow-x: hidden; background: inherit; tab-size: 4; }
+iframe { margin: auto; }
+a.url { word-break: break-all; }
+a:active, a:hover { outline: 0px; }
+.in-text-selection, ::selection { text-shadow: none; background: var(--select-text-bg-color); color: var(--select-text-font-color); }
+#write { margin: 0px auto; height: auto; width: inherit; word-break: normal; overflow-wrap: break-word; position: relative; white-space: normal; overflow-x: visible; padding-top: 36px; }
+#write.first-line-indent p { text-indent: 2em; }
+#write.first-line-indent li p, #write.first-line-indent p * { text-indent: 0px; }
+#write.first-line-indent li { margin-left: 2em; }
+.for-image #write { padding-left: 8px; padding-right: 8px; }
+body.typora-export { padding-left: 30px; padding-right: 30px; }
+.typora-export .footnote-line, .typora-export li, .typora-export p { white-space: pre-wrap; }
+.typora-export .task-list-item input { pointer-events: none; }
+@media screen and (max-width: 500px) {
+  body.typora-export { padding-left: 0px; padding-right: 0px; }
+  #write { padding-left: 20px; padding-right: 20px; }
+  .CodeMirror-sizer { margin-left: 0px !important; }
+  .CodeMirror-gutters { display: none !important; }
+}
+#write li > figure:last-child { margin-bottom: 0.5rem; }
+#write ol, #write ul { position: relative; }
+img { max-width: 100%; vertical-align: middle; image-orientation: from-image; }
+button, input, select, textarea { color: inherit; font: inherit; }
+input[type="checkbox"], input[type="radio"] { line-height: normal; padding: 0px; }
+*, ::after, ::before { box-sizing: border-box; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p, #write pre { width: inherit; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p { position: relative; }
+p { line-height: inherit; }
+h1, h2, h3, h4, h5, h6 { break-after: avoid-page; break-inside: avoid; orphans: 4; }
+p { orphans: 4; }
+h1 { font-size: 2rem; }
+h2 { font-size: 1.8rem; }
+h3 { font-size: 1.6rem; }
+h4 { font-size: 1.4rem; }
+h5 { font-size: 1.2rem; }
+h6 { font-size: 1rem; }
+.md-math-block, .md-rawblock, h1, h2, h3, h4, h5, h6, p { margin-top: 1rem; margin-bottom: 1rem; }
+.hidden { display: none; }
+.md-blockmeta { color: rgb(204, 204, 204); font-weight: 700; font-style: italic; }
+a { cursor: pointer; }
+sup.md-footnote { padding: 2px 4px; background-color: rgba(238, 238, 238, 0.7); color: rgb(85, 85, 85); border-radius: 4px; cursor: pointer; }
+sup.md-footnote a, sup.md-footnote a:hover { color: inherit; text-transform: inherit; text-decoration: inherit; }
+#write input[type="checkbox"] { cursor: pointer; width: inherit; height: inherit; }
+figure { overflow-x: auto; margin: 1.2em 0px; max-width: calc(100% + 16px); padding: 0px; }
+figure > table { margin: 0px; }
+tr { break-inside: avoid; break-after: auto; }
+thead { display: table-header-group; }
+table { border-collapse: collapse; border-spacing: 0px; width: 100%; overflow: auto; break-inside: auto; text-align: left; }
+table.md-table td { min-width: 32px; }
+.CodeMirror-gutters { border-right: 0px; background-color: inherit; }
+.CodeMirror-linenumber { user-select: none; }
+.CodeMirror { text-align: left; }
+.CodeMirror-placeholder { opacity: 0.3; }
+.CodeMirror pre { padding: 0px 4px; }
+.CodeMirror-lines { padding: 0px; }
+div.hr:focus { cursor: none; }
+#write pre { white-space: pre-wrap; }
+#write.fences-no-line-wrapping pre { white-space: pre; }
+#write pre.ty-contain-cm { white-space: normal; }
+.CodeMirror-gutters { margin-right: 4px; }
+.md-fences { font-size: 0.9rem; display: block; break-inside: avoid; text-align: left; overflow: visible; white-space: pre; background: inherit; position: relative !important; }
+.md-fences-adv-panel { width: 100%; margin-top: 10px; text-align: center; padding-top: 0px; padding-bottom: 8px; overflow-x: auto; }
+#write .md-fences.mock-cm { white-space: pre-wrap; }
+.md-fences.md-fences-with-lineno { padding-left: 0px; }
+#write.fences-no-line-wrapping .md-fences.mock-cm { white-space: pre; overflow-x: auto; }
+.md-fences.mock-cm.md-fences-with-lineno { padding-left: 8px; }
+.CodeMirror-line, twitterwidget { break-inside: avoid; }
+.footnotes { opacity: 0.8; font-size: 0.9rem; margin-top: 1em; margin-bottom: 1em; }
+.footnotes + .footnotes { margin-top: 0px; }
+.md-reset { margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background: 0px 0px; text-decoration: none; text-shadow: none; float: none; position: static; width: auto; height: auto; white-space: nowrap; cursor: inherit; -webkit-tap-highlight-color: transparent; line-height: normal; font-weight: 400; text-align: left; box-sizing: content-box; direction: ltr; }
+li div { padding-top: 0px; }
+blockquote { margin: 1rem 0px; }
+li .mathjax-block, li p { margin: 0.5rem 0px; }
+li blockquote { margin: 1rem 0px; }
+li { margin: 0px; position: relative; }
+blockquote > :last-child { margin-bottom: 0px; }
+blockquote > :first-child, li > :first-child { margin-top: 0px; }
+.footnotes-area { color: rgb(136, 136, 136); margin-top: 0.714rem; padding-bottom: 0.143rem; white-space: normal; }
+#write .footnote-line { white-space: pre-wrap; }
+@media print {
+  body, html { border: 1px solid transparent; height: 99%; break-after: avoid; break-before: avoid; font-variant-ligatures: no-common-ligatures; }
+  #write { margin-top: 0px; padding-top: 0px; border-color: transparent !important; }
+  .typora-export * { -webkit-print-color-adjust: exact; }
+  .typora-export #write { break-after: avoid; }
+  .typora-export #write::after { height: 0px; }
+  .is-mac table { break-inside: avoid; }
+  .typora-export-show-outline .typora-export-sidebar { display: none; }
+}
+.footnote-line { margin-top: 0.714em; font-size: 0.7em; }
+a img, img a { cursor: pointer; }
+pre.md-meta-block { font-size: 0.8rem; min-height: 0.8rem; white-space: pre-wrap; background: rgb(204, 204, 204); display: block; overflow-x: hidden; }
+p > .md-image:only-child:not(.md-img-error) img, p > img:only-child { display: block; margin: auto; }
+#write.first-line-indent p > .md-image:only-child:not(.md-img-error) img { left: -2em; position: relative; }
+p > .md-image:only-child { display: inline-block; width: 100%; }
+#write .MathJax_Display { margin: 0.8em 0px 0px; }
+.md-math-block { width: 100%; }
+.md-math-block:not(:empty)::after { display: none; }
+.MathJax_ref { fill: currentcolor; }
+[contenteditable="true"]:active, [contenteditable="true"]:focus, [contenteditable="false"]:active, [contenteditable="false"]:focus { outline: 0px; box-shadow: none; }
+.md-task-list-item { position: relative; list-style-type: none; }
+.task-list-item.md-task-list-item { padding-left: 0px; }
+.md-task-list-item > input { position: absolute; top: 0px; left: 0px; margin-left: -1.2em; margin-top: calc(1em - 10px); border: none; }
+.math { font-size: 1rem; }
+.md-toc { min-height: 3.58rem; position: relative; font-size: 0.9rem; border-radius: 10px; }
+.md-toc-content { position: relative; margin-left: 0px; }
+.md-toc-content::after, .md-toc::after { display: none; }
+.md-toc-item { display: block; color: rgb(65, 131, 196); }
+.md-toc-item a { text-decoration: none; }
+.md-toc-inner:hover { text-decoration: underline; }
+.md-toc-inner { display: inline-block; cursor: pointer; }
+.md-toc-h1 .md-toc-inner { margin-left: 0px; font-weight: 700; }
+.md-toc-h2 .md-toc-inner { margin-left: 2em; }
+.md-toc-h3 .md-toc-inner { margin-left: 4em; }
+.md-toc-h4 .md-toc-inner { margin-left: 6em; }
+.md-toc-h5 .md-toc-inner { margin-left: 8em; }
+.md-toc-h6 .md-toc-inner { margin-left: 10em; }
+@media screen and (max-width: 48em) {
+  .md-toc-h3 .md-toc-inner { margin-left: 3.5em; }
+  .md-toc-h4 .md-toc-inner { margin-left: 5em; }
+  .md-toc-h5 .md-toc-inner { margin-left: 6.5em; }
+  .md-toc-h6 .md-toc-inner { margin-left: 8em; }
+}
+a.md-toc-inner { font-size: inherit; font-style: inherit; font-weight: inherit; line-height: inherit; }
+.footnote-line a:not(.reversefootnote) { color: inherit; }
+.md-attr { display: none; }
+.md-fn-count::after { content: "."; }
+code, pre, samp, tt { font-family: var(--monospace); }
+kbd { margin: 0px 0.1em; padding: 0.1em 0.6em; font-size: 0.8em; color: rgb(36, 39, 41); background: rgb(255, 255, 255); border: 1px solid rgb(173, 179, 185); border-radius: 3px; box-shadow: rgba(12, 13, 14, 0.2) 0px 1px 0px, rgb(255, 255, 255) 0px 0px 0px 2px inset; white-space: nowrap; vertical-align: middle; }
+.md-comment { color: rgb(162, 127, 3); opacity: 0.8; font-family: var(--monospace); }
+code { text-align: left; vertical-align: initial; }
+a.md-print-anchor { white-space: pre !important; border-width: initial !important; border-style: none !important; border-color: initial !important; display: inline-block !important; position: absolute !important; width: 1px !important; right: 0px !important; outline: 0px !important; background: 0px 0px !important; text-decoration: initial !important; text-shadow: initial !important; }
+.md-inline-math .MathJax_SVG .noError { display: none !important; }
+.html-for-mac .inline-math-svg .MathJax_SVG { vertical-align: 0.2px; }
+.md-fences-math .MathJax_SVG_Display, .md-math-block .MathJax_SVG_Display { text-align: center; margin: 0px; position: relative; text-indent: 0px; max-width: none; max-height: none; min-height: 0px; min-width: 100%; width: auto; overflow-y: visible; display: block !important; }
+.MathJax_SVG_Display, .md-inline-math .MathJax_SVG_Display { width: auto; margin: inherit; display: inline-block !important; }
+.MathJax_SVG .MJX-monospace { font-family: var(--monospace); }
+.MathJax_SVG .MJX-sans-serif { font-family: sans-serif; }
+.MathJax_SVG { display: inline; font-style: normal; font-weight: 400; line-height: normal; text-indent: 0px; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; overflow-wrap: normal; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0px; min-height: 0px; border: 0px; padding: 0px; margin: 0px; zoom: 90%; }
+#math-inline-preview-content { zoom: 1.1; }
+.MathJax_SVG * { transition: none 0s ease 0s; }
+.MathJax_SVG_Display svg { vertical-align: middle !important; margin-bottom: 0px !important; margin-top: 0px !important; }
+.os-windows.monocolor-emoji .md-emoji { font-family: "Segoe UI Symbol", sans-serif; }
+.md-diagram-panel > svg { max-width: 100%; }
+[lang="flow"] svg, [lang="mermaid"] svg { max-width: 100%; height: auto; }
+[lang="mermaid"] .node text { font-size: 1rem; }
+table tr th { border-bottom: 0px; }
+video { max-width: 100%; display: block; margin: 0px auto; }
+iframe { max-width: 100%; width: 100%; border: none; }
+.highlight td, .highlight tr { border: 0px; }
+mark { background: rgb(255, 255, 0); color: rgb(0, 0, 0); }
+.md-html-inline .md-plain, .md-html-inline strong, mark .md-inline-math, mark strong { color: inherit; }
+.md-expand mark .md-meta { opacity: 0.3 !important; }
+mark .md-meta { color: rgb(0, 0, 0); }
+@media print {
+  .typora-export h1, .typora-export h2, .typora-export h3, .typora-export h4, .typora-export h5, .typora-export h6 { break-inside: avoid; }
+}
+.md-diagram-panel .messageText { stroke: none !important; }
+.md-diagram-panel .start-state { fill: var(--node-fill); }
+.md-diagram-panel .edgeLabel rect { opacity: 1 !important; }
+.md-require-zoom-fix foreignobject { font-size: var(--mermaid-font-zoom); }
+.md-fences.md-fences-math { font-size: 1em; }
+.md-fences-math .MathJax_SVG_Display { margin-top: 8px; cursor: default; }
+.md-fences-advanced:not(.md-focus) { padding: 0px; white-space: nowrap; border: 0px; }
+.md-fences-advanced:not(.md-focus) { background: inherit; }
+.typora-export-show-outline .typora-export-content { max-width: 1440px; margin: auto; display: flex; flex-direction: row; }
+.typora-export-sidebar { width: 300px; font-size: 0.8rem; margin-top: 80px; margin-right: 18px; }
+.typora-export-show-outline #write { --webkit-flex:2; flex: 2 1 0%; }
+.typora-export-sidebar .outline-content { position: fixed; top: 0px; max-height: 100%; overflow: hidden auto; padding-bottom: 30px; padding-top: 60px; width: 300px; }
+@media screen and (max-width: 1024px) {
+  .typora-export-sidebar, .typora-export-sidebar .outline-content { width: 240px; }
+}
+@media screen and (max-width: 800px) {
+  .typora-export-sidebar { display: none; }
+}
+.outline-content li, .outline-content ul { margin-left: 0px; margin-right: 0px; padding-left: 0px; padding-right: 0px; list-style: none; }
+.outline-content ul { margin-top: 0px; margin-bottom: 0px; }
+.outline-content strong { font-weight: 400; }
+.outline-expander { width: 1rem; height: 1.42857rem; position: relative; display: table-cell; vertical-align: middle; cursor: pointer; padding-left: 4px; }
+.outline-expander::before { content: ""; position: relative; font-family: Ionicons; display: inline-block; font-size: 8px; vertical-align: middle; }
+.outline-item { padding-top: 3px; padding-bottom: 3px; cursor: pointer; }
+.outline-expander:hover::before { content: ""; }
+.outline-h1 > .outline-item { padding-left: 0px; }
+.outline-h2 > .outline-item { padding-left: 1em; }
+.outline-h3 > .outline-item { padding-left: 2em; }
+.outline-h4 > .outline-item { padding-left: 3em; }
+.outline-h5 > .outline-item { padding-left: 4em; }
+.outline-h6 > .outline-item { padding-left: 5em; }
+.outline-label { cursor: pointer; display: table-cell; vertical-align: middle; text-decoration: none; color: inherit; }
+.outline-label:hover { text-decoration: underline; }
+.outline-item:hover { border-color: rgb(245, 245, 245); background-color: var(--item-hover-bg-color); }
+.outline-item:hover { margin-left: -28px; margin-right: -28px; border-left: 28px solid transparent; border-right: 28px solid transparent; }
+.outline-item-single .outline-expander::before, .outline-item-single .outline-expander:hover::before { display: none; }
+.outline-item-open > .outline-item > .outline-expander::before { content: ""; }
+.outline-children { display: none; }
+.info-panel-tab-wrapper { display: none; }
+.outline-item-open > .outline-children { display: block; }
+.typora-export .outline-item { padding-top: 1px; padding-bottom: 1px; }
+.typora-export .outline-item:hover { margin-right: -8px; border-right: 8px solid transparent; }
+.typora-export .outline-expander::before { content: "+"; font-family: inherit; top: -1px; }
+.typora-export .outline-expander:hover::before, .typora-export .outline-item-open > .outline-item > .outline-expander::before { content: "−"; }
+.typora-export-collapse-outline .outline-children { display: none; }
+.typora-export-collapse-outline .outline-item-open > .outline-children, .typora-export-no-collapse-outline .outline-children { display: block; }
+.typora-export-no-collapse-outline .outline-expander::before { content: "" !important; }
+.typora-export-show-outline .outline-item-active > .outline-item .outline-label { font-weight: 700; }
+
+
+:root {
+  --title-color: #8064a9;
+  --text-color: #444444;
+  --light-text-color: #666666;
+  --link-color: #2aa899;
+  --code-color: #745fb5;
+
+  --shadow-color: #eee;
+  --purple-light: rgba(116, 95, 181, 0.2);
+  --border: #e7e7e7;
+  --shadow: 3px 3px 10px var(--shadow-color);
+
+  --side-bar-bg-color: #fafafa;
+  --control-text-color: var(var(--light-text-color));
+  --active-file-text-color: var(--title-color);
+  --active-file-bg-color: var(--shadow-color);
+  --item-hover-bg-color: var(--shadow-color);
+  --active-file-border-color: var(var(--title-color));
+
+  --base-font: "Helvetica Neue", "Noto Sans", -apple-system, Ubuntu,
+    "Microsoft YaHei", Helvetica, "Nimbus Sans L", Arial, "Liberation Sans",
+    "Noto Sans CJK SC", "PingFang SC", "Hiragino Sans GB", "Source Han Sans SC",
+    "Source Han Sans CN", "Wenquanyi Micro Hei", "WenQuanYi Zen Hei", "ST Heiti",
+    SimHei, "WenQuanYi Zen Hei Sharp", "Source Sans Pro", sans-serif;
+  --title-font: "EB Garamond", Georgia, "Noto Serif", "Noto Serif CJK SC",
+    "Nimbus Roman No9 L", "Songti SC", "Source Han Serif SC",
+    "Source Han Serif CN", STSong, "AR PL New Sung", "AR PL SungtiL GB", NSimSun,
+    SimSun, "TW\-Sung", "WenQuanYi Bitmap Song", "AR PL UMing CN",
+    "AR PL UMing HK", "AR PL UMing TW", "AR PL UMing TW MBE", PMingLiU, MingLiU,
+    "Ubuntu", "Source Sans Pro", serif;
+  --monospace: "JetBrains Mono", "Fira Code", "Cascadia Code", "Sarasa Term SC",
+    Monaco, "Deja Vu Sans Mono", Consolas, "Lucida Console", "Andale Mono",
+    "Roboto Mono", Courier, Monospace !important;
+}
+
+/* 打印 */
+@media print {
+  html {
+    font-size: 0.9rem;
+  }
+
+  table,
+  pre {
+    page-break-inside: avoid;
+  }
+
+  pre {
+    word-wrap: break-word;
+  }
+  #write {
+    max-width: 100%;
+  }
+  @page {
+    size: A3; /* PDF output size */
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  text-rendering: optimizelegibility;
+  -webkit-font-smoothing: initial;
+}
+
+body {
+  color: var(--text-color);
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.6rem;
+  letter-spacing: 0;
+  overflow-x: hidden;
+}
+
+/* 页边距 和 页面大小 */
+#write {
+  font-family: var(--base-font);
+  /* max-width: 914px; */
+  margin: 0 auto;
+  padding: 1rem 4rem;
+  padding-bottom: 100px;
+}
+
+#write p {
+  line-height: 1.6rem;
+  word-spacing: 0.05rem;
+}
+
+body > *:first-child {
+  margin-top: 0 !important;
+}
+
+body > *:last-child {
+  margin-bottom: 0 !important;
+}
+
+a {
+  color: var(--link-color);
+  text-decoration: none;
+}
+#write a {
+  border-bottom: none;
+}
+#write a:hover {
+  border-bottom: 1px solid var(--link-color);
+  color: var(--link-color);
+  text-decoration: none;
+}
+.md-content {
+  color: var(--light-text-color);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  position: relative;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  font-weight: normal;
+  line-height: 1.3;
+  cursor: text;
+  color: var(--title-color);
+  font-family: var(--title-font);
+}
+
+h1 {
+  text-align: center;
+  font-size: 2.25em;
+  margin-bottom: 2rem;
+}
+h1:after {
+  content: "";
+  display: block;
+  margin: 0.2em auto 0;
+  width: 6rem;
+  height: 2px;
+  border-bottom: 2px solid var(--title-color);
+}
+
+h2 {
+  padding-left: 0.4em;
+  font-size: 1.75em;
+  border-left: 0.4em solid var(--title-color);
+  border-bottom: 1px solid var(--title-color);
+}
+h3 {
+  font-size: 1.5em;
+}
+h4 {
+  font-size: 1.3em;
+}
+h5 {
+  font-size: 1.2em;
+}
+h6 {
+  font-size: 1.1em;
+}
+
+p,
+blockquote,
+ul,
+ol,
+dl,
+table {
+  margin: 0.8em 0;
+}
+
+/* horizontal rule */
+hr {
+  margin: 1.5em auto;
+  border-top: 1px solid var(--border);
+}
+
+/* 列表 */
+li > ol,
+li > ul {
+  margin: 0 0;
+}
+
+li p.first {
+  display: inline-block;
+}
+
+ul,
+ol {
+  padding-left: 2rem;
+}
+
+ul:first-child,
+ol:first-child {
+  margin-top: 0;
+}
+
+ul:last-child,
+ol:last-child {
+  margin-bottom: 0;
+}
+
+#write ol li,
+ul li {
+  padding-left: 0.1rem;
+}
+
+/* 引用 */
+blockquote {
+  border-left: 0.2em solid var(--purple-light);
+  padding-left: 1em;
+  color: var(--light-text-color);
+  font-family: var(--base-font);
+}
+
+/* 表格 */
+table {
+  margin-bottom: 1.25rem;
+}
+table th,
+table td {
+  padding: 8px;
+  line-height: 1.25rem;
+  vertical-align: middle;
+  border: 1px solid #ddd;
+}
+table th {
+  font-weight: bold;
+}
+table thead th {
+  vertical-align: middle;
+}
+table tr:nth-child(2n),
+thead {
+  background-color: #fcfcfc;
+}
+
+/* 粗体 */
+#write strong {
+  padding: 0 2px;
+  font-weight: bold;
+}
+
+/* inline code */
+#write code,
+tt {
+  padding: 2px 4px;
+  border-radius: 0.3rem;
+  font-family: var(--monospace);
+  font-size: 0.9rem;
+  color: var(--code-color);
+  background-color: #f4f2f9;
+  margin: 0 2px;
+}
+
+#write .md-footnote {
+  color: var(--code-color);
+  background-color: #f4f2f9;
+}
+
+/* highlight. */
+#write mark {
+  background-color: #f9f2f4;
+  border-radius: 0.3rem;
+  padding: 2px 4px;
+  margin: 0 2px;
+  color: #c7254e;
+}
+
+#write del {
+  padding: 1px 2px;
+}
+
+.md-task-list-item > input {
+  margin-left: -1.3em;
+}
+
+#write pre.md-meta-block {
+  padding: 1rem;
+  font-size: 85%;
+  line-height: 1.45;
+  background-color: #f7f7f7;
+  border: 0;
+  border-radius: 3px;
+  color: #777777;
+  margin-top: 0 !important;
+}
+
+.mathjax-block > .code-tooltip {
+  bottom: 0.375rem;
+}
+
+/* 图片 */
+.md-image > .md-meta {
+  border-radius: 3px;
+  font-family: var(--monospace);
+  padding: 2px 0 0 4px;
+  font-size: 0.9em;
+  color: inherit;
+}
+/* 图片靠左显示 */
+/* p .md-image:only-child {
+  width: auto;
+  text-align: left;
+  margin-left: 2rem;
+} */
+
+/* 写![shadow-...]() 显示图片阴影 */
+img[alt|="shadow"] {
+  box-shadow: var(--shadow);
+}
+
+#write a.md-toc-inner {
+  line-height: 1.6;
+  white-space: pre-line;
+  border-bottom: none;
+  font-size: 0.9rem;
+}
+
+header,
+.context-menu,
+.megamenu-content,
+footer {
+  font-family: var(--base-font);
+}
+
+.file-node-content:hover .file-node-icon,
+.file-node-content:hover .file-node-open-state {
+  visibility: visible;
+}
+
+.md-lang {
+  color: #b4654d;
+}
+
+.html-for-mac .context-menu {
+  --item-hover-bg-color: #e6f0fe;
+}
+
+/* border and bg */
+.md-fences {
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  background: #fdfdfd !important;
+}
+/* 代码框阴影 */
+#write pre.md-fences {
+  display: block;
+  -webkit-overflow-scrolling: touch;
+  box-shadow: var(--shadow);
+}
+
+.cm-s-inner {
+  padding: 0.25rem;
+  border-radius: 0.25rem;
+}
+
+.cm-s-inner.CodeMirror,
+.cm-s-inner .CodeMirror-gutters {
+  color: #3a3432 !important;
+  border: none;
+}
+
+.cm-s-inner .CodeMirror-gutters {
+  color: #6d8a88;
+}
+
+.cm-s-inner .CodeMirror-linenumber {
+  padding: 0 0.1rem 0 0.3rem;
+  color: #b8b5b4;
+}
+
+.cm-s-inner .CodeMirror-matchingbracket {
+  text-decoration: underline;
+  color: #a34e8f !important;
+}
+
+#fences-auto-suggest .active {
+  background: #ddd;
+}
+
+.cm-s-inner span.cm-comment {
+  color: #9daab6;
+}
+.cm-s-inner span.cm-builtin {
+  color: #0451a5;
+}
+
+/* language tip */
+#write .code-tooltip {
+  border: 1px solid var(--border);
+}
+
+.auto-suggest-container {
+  border-color: #b4b4b4;
+}
+
+.auto-suggest-container .autoComplt-hint.active {
+  background: #b4b4b4;
+  color: inherit;
+}
+
+/* task list */
+#write .md-task-list-item > input {
+  -webkit-appearance: initial;
+  display: block;
+  position: absolute;
+  border: 1px solid #b4b4b4;
+  border-radius: 0.2rem;
+  margin-top: 0.3rem;
+  height: 1rem;
+  width: 1rem;
+  transition: background 0.3s;
+}
+
+#write .md-task-list-item > input:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+#write .md-task-list-item > input:hover {
+  background: #ddd;
+}
+
+#write .md-task-list-item > input[checked]::before {
+  content: "";
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  height: 60%;
+  width: 2px;
+  transform: rotate(40deg);
+  background: #333;
+}
+
+#write .md-task-list-item > input[checked]::after {
+  content: "";
+  position: absolute;
+  top: 46%;
+  left: 25%;
+  height: 30%;
+  width: 2px;
+  transform: rotate(-40deg);
+  background: #333;
+}
+
+#write .md-task-list-item > p {
+  transition: color 0.3s, opacity 0.3s;
+}
+
+#write .md-task-list-item.task-list-done > p {
+  color: #b4b4b4;
+  text-decoration: line-through;
+}
+
+#write .md-task-list-item.task-list-done > p > .md-emoji {
+  opacity: 0.5;
+}
+
+#write .md-task-list-item.task-list-done > p > .md-link > a {
+  opacity: 0.6;
+}
+
+/* sidebar */
+#typora-sidebar,
+.typora-node #typora-sidebar {
+  box-shadow: 3px 0px 10px var(--shadow-color);
+}
+.sidebar-content-content {
+  font-size: 0.9rem;
+}
+
+
+
+</style><title>do_u_love_linux</title>
+</head>
+<body class='typora-export'><div class='typora-export-content'>
+<div id='write'  class=''><p><span>这篇文章摘录自</span><a href='http://www.ctex.org/documents/shredder/linux.html'><span>完全用 GNU/Linux 工作</span></a><span>，很是喜欢，摘录在此。</span></p><p><span>如有侵权，请联系</span><a href='mailto:zh_elepika@126.com'><span>email</span></a><span>，我会尽快删除。</span></p><p><span>=================================================</span></p><h1 id='完全用-gnulinux-工作'><span>完全用 GNU/Linux 工作</span></h1><p><span>半年来，Linux 高效的完成了我所有的工作。</span></p><p><span>Hi! 我们先来看看很关键的一种计算机软件叫做“操作系统”(名词解释略 :P)。GNU/Linux 是一个操作系统，如果你不知道它是怎样一个系统，可以参考 </span><a href='http://www.kernel.org' target='_blank' class='url'>http://www.kernel.org</a><span>. </span></p><p><span>由于 GNU/Linux  这个词太长，下面如果没有特别指明，“Linux”就是指“GNU/Linux”。由于某种我不明白的稀奇古怪的法律原因，Linux 不能叫做  UNIX。我只是一个无名小卒，所以可能没有人无聊到想找我打官司，所以我可以随便提到一些专有名词，而不用声明“foo是bar公司的商标”。我可以说：Linux 实质上是 UNIX，而且是最有生命力，最有前途的 UNIX。以后我用在 Linux 身上的说法同样适用于其它 UNIX，反之也成立。</span></p><h2 id='我与-linux-的故事'><span>我与 Linux 的故事</span></h2><p><span>这是我写过的最长的一段个人历史，因为我对 Linux 实在非常有感情。不喜欢看别人历史的人可以</span><a href='http://www.ctex.org/documents/shredder/linux.html#skip'><span>跳过这节</span></a><span>。</span></p><p><span>1997年，我进入计算机系学习一学期后，和别人合伙买了一个电脑，装了一个 Windows95 系统。可是 Windows95  太不稳定了，正常使用时一天死机3次不算多，况且我是那种顽劣分子，到了我手里，如果两个小时内 Windows  没有死机是很不正常的，合伙的同学都怕了我 :)  我很委屈，我认为这不是我的错，一个操作系统不应该是这样脆弱。我不喜欢那样小心翼翼的使用计算机，我喜欢可摔可打的结实的东西（就像滑板：）。我告诉老师我想要一种不死机的系统，老师说：“你应该使用 UNIX。” 可是 UNIX 似乎是非常昂贵的东西，而且是臭名昭著的“对用户不友好”（据同学说），所以我虽然得到了 SCO  UNIX，但是一直没能安装。</span></p><p><span>后来我偶然的在一个书店的角落里发现一本上了灰的书：“个人电脑上的 UNIX:  Linux”（好像是这个名字吧）。那是书店里唯一的一本有关 Linux 的书籍（想想今天书店里汗牛塞屋的 Linux 书籍:），里面讲了一些  Slackware Linux  的安装，使用等东西。我浏览了一遍之后，发现这个系统是免费的，而且可以在PC上安装，所以非常感兴趣，把这本无人问津的书买了(咳，看那个书店老板笑的 :) </span></p><p><span>然后我就开始寻找书中所说的 Slackware，它说要40多张软盘哪！结果没能在软件商店找到。两个月之后我居然在电脑城发现了  Slackware 的光盘，我立即把它买了回去。（卖软件的人说：“总算卖出去了”。）  我顶住合伙人的强烈反对，硬是把硬盘分了一块出来，照书里的方法把 Slackware  安上了，光盘安装出其意料的简单。为了避免别人不方便，我没有在mbr安装lilo，每次都从软盘启动机器。从此我就算是一个 Linux  用户了。其实这时我只当了半年的 Windows 用户。</span></p><p><span>但是我那时候并不是很理解 Linux，我认为它只是没有钱买商业 UNIX 的人的一种无奈的选择。后来 Linux  网络功能越来越强，很多网站开始使用Linux，可是我认为 Linux 只能作为网络服务器或者程序开发平台，而不能用于普通用户。用 Linux  吧，我不知道怎么在 Linux 下放影片，不知道怎么舒舒服服的浏览网页。用 Windows 吧，我不知道怎么在 Windows  下舒舒服服的写程序，Turbo C, VC++ 的工作方式显然是不适合我的。所以很多时候我在 Windows 和 Linux  之间切换，我觉得很不方便。但是 Linux 的操作方式实在很高效，我甚至在 Windows 下安装 </span><a href='http://www.cygwin.com'><span>cygwin</span></a><span>。</span></p><p><span>此处省略20000字……</span></p><p><span>半年前由于我对 LaTeX 的深入掌握，我移植了 gbkfonts 给 Linux，而且发现了很好的中文输入法 XSIM，SCIM 和 fcitx，所以我不再依赖 Word，而能够用 Linux 处理大部分事情了。所以我有一个月没有用 win2000, 后来我把除了 C:  以外的 Windows 分区都删掉给了 Linux，仍然没有启动  win2000。后来有一天偶然需要看一个word文档，启动win2000，可是不知道怎么它就崩溃了（难道因为我删了两个分区？），然后我干脆把  C: 也格成了 ext3，这样 Windows 就从我机器上消失了，Linux 成为了我机器上的统治者。那个 word  文档，我后来让同学帮我转成了 PDF 给我看 :)</span></p><p><span>我相信我能用 Linux 解决电脑上的所有问题，所以遇到问题时就想办法用 Linux 解决，结果半年下来，我顺利的完成了各种工作。包括日常的网络，编程，科研和论文，presentation，娱乐…… </span></p><p><span>现在我已经几乎忘记了  Windows，不是因为歧视它，只不过因为它已经对我没有什么用处，所以不要以为我想引起“宗教战争”哈，操作系统的不同不应该成为人们争执的原因。实际上我很乐意帮助爸爸解决有关 Windows 的问题，隔壁的微软研究院的王益也是我的好朋友。我以后的讨论不再涉及 Windows 的优劣的事情，我知道 Linux  能做的很多事情 Windows 也能做，但是不用提醒我啦，因为我实在对操作系统的底层不感兴趣。</span></p><h2 id='自由软件的重要性'><span>自由软件的重要性</span></h2><p><span>我非常高兴能够完全使用 Linux 工作。虽然 Linux 和它的朋友们在很多方面已经超过了商业 UNIX，它们在某些方面还不如某些商业  UNIX，但是可以预见，Linux  这样的自由软件在将来一定会一统天下。因为“自由”对于人们来说是非常重要的，越来越多的人意识到了这一点，他们志愿的投入到 Linux  程序的开发中来。很多大公司，IBM, SGI, HP…… 也都开始支持 Linux. 所以 Linux 的发展会越来越快。Linux  没有任何历史包袱，通过学习其它系统的优点，Linux 的程序会越来越完美。</span></p><p><span>纵观历史上造成重大影响的程序，几乎都是自由开放的软件。TeX, Linux, Xwindow, Perl ...  而商业程序的命运总是在一瞬间灰飞烟灭，被人们遗忘得不留任何痕迹。看看商业的 UNIX，四分五裂，各不兼容，给用户造成很多麻烦。商业的  MACSYMA，它的公司在一瞬间消失，让所有用户失去支持。这是我们不希望看到的。</span></p><p><span>自由软件为什么会有如此大的威力呢？首先，你会发现，自由软件的适应性比商业软件大的多。只要有人需要某种功能，就有人把这种功能加入到程序里。FVWM  浩如烟海的功能就是这样的结果。自由软件往往可移植性强很容易跟其它系统的程序相处，它们在不同系统上的编译安装一般没有问题，因为这是由很多种系统的用户共同开发而成的。而商业UNIX程序往往不能很容易的在不同的系统安装，甚至在开发时使用的那种系统上安装都需要花很大功夫。不提供源码直接导致了这种不方便。曾经有一个日本软件公司的工作人员在我们实验室抓了整整一天后脑勺，才把一个Solaris的商业软件装好 :p</span></p><p><span>自由软件的全部或者部分能够被随意的利用，改进，再次发行。你可以修改你发现的bug或者加入你自己需要的功能，或者移植给其它系统。如果你不是一个程序员，那你可以请人来做这个工作。比如你报告一个bug，很快就有人解决这个问题，你提出一个新的想法，有些感兴趣的程序员就可以帮你实现。比如，我就曾经修改了 XSIM 的代码，改正了它在屏幕保护时状态窗口不消失的问题。我移植了 gbkfonts 的代码给 Linux 和  Solaris，我就能在这些系统生成 TeX 的中文字体。我修改了 dvipdfmx 的代码，让它可以嵌入某些通常不能嵌入的字体，我使用  fcitx 的时候发现有些很不方便的地方，我给它的作者Yuking兄提了一些建议，结果一个星期之内他就满足了我的要求，推出了新版本。现在我觉得  fcitx 已经很完美了。</span></p><p><span>用户能够自己改进程序，再次发行，这样软件的功能就会越来越强大，衍生出来的软件会使更多的人受益。商业软件没有这个优点，如果出了问题，你不能很快的得到帮助，bug  不能很快的得到修改，即使修改了bug，更新的版本很可能还得要你掏钱，谁还愿意报告bug呢？至于你想要的特殊的功能，想都不要想啦！一般的软件公司根本不可能考虑你个人的需要。</span></p><p><span>自由软件具有强大的生命力，这是由它的开放性决定的。一个自由软件，哪怕只剩一个人喜欢，他都可以自己来维护这个程序的生存，适应自己的需要。说不定以后还会有更多的人对这个程序产生兴趣。</span><a href='http://www.ctex.org/documents/shredder/maxima.html'><span>MAXIMA</span></a><span> 就是这样一个例子。Schelter 博士由于自己的兴趣，默默无闻的维护 MAXIMA 直到他生命的最后一刻，他拯救了 MACSYMA — 世界上最优秀的计算机代数系统。</span></p><p><span>自由软件有良好的社会作用。它的一切工作原理都是公开的，这体现了尊重科学，不为名利，信息公开，共同进步的良好风尚，这对于科学研究工作是非常重要的。它能够被随意的拷贝给需要它的人们去用，这体现了人们互相帮助的美德，一个理解自由软件思想的人会更加关爱社会，乐于助人，对于改善整个社会风气都有很大的好处。</span></p><h2 id='用-linux-完成你在电脑上的所有工作'><span>用 Linux 完成你在电脑上的所有工作</span></h2><p><span>Linux 能完成我所有的工作，但是不一定能完成你所有的工作。以下这些仅供参考。在你有信心完全使用 Linux 之前，不要删掉你的其它操作系统。不要一时冲动，到后来后悔哈！</span></p><p><span>很多人在某些事情上已经离不开 Linux，但是他却没有找到可靠的 Linux  程序来完成某些其它操作系统能完成的某些简单的事情。比如很多人抱怨 Linux 下的 Mozilla mail, evolution  损坏他们刚写好要发出去的 email。 有些人认为他专业上的程序只有商业 UNIX 和 Windows 才有。比如有些人为了使用  Mathematica 而使用 Windows，他说 Linux 下没有 Mathematica 程序，商业 UNIX 又买不起。其实完全可以用 Linux 来完成这些事情。</span></p><p><span>首先，Mozilla mail, evolution 虽然是 Linux 可以用的程序，但是由于历史太短，它们还没有稳定下来，有很多 bug。如果你需要可靠稳定，而不想费时间帮助 debug，你完全可以用 </span><a href='http://www.mutt.org'><span>Mutt</span></a><span> 这样的强大可靠的工具来发送你的 email。Mutt 比起 Mozilla mail, evolution  都要强大的多，但是它显然是某些“专家”才能使用的工具，普通用户还是只能用 Mozilla mail 或者 evolution。所以很感谢  Mozilla mail 和 evolution 的使用者，没有你们，这两个软件可能就不能得到用户的反馈和改进了。别怕！什么专家啊，吓你的 :) 其实普通对电脑有兴趣的人都可以用 Mutt。我为你准备了一个不需要成为专家就能使用 Mutt 的入门文档，看</span><a href='http://www.ctex.org/documents/shredder/mutt_frame.html'><span>这里</span></a><span>。</span></p><p><span>第二，Mathematica 有 Linux 的版本，你自己去 wolfram.com 看看吧，800 多美元就能买到。由于  Linux 性能良好，很多科学家，工程师开始使用 Linux, 所以商业的科学工程程序，比如 Matlab, Mathematica,  AutoCAD, Design Compiler, HSpice ……很多都移植给了  Linux。当然它们可能不是免费的，但是它们值那个价钱（也许吧）。如果你喜欢自由软件，很多商业程序有对应的自由软件，比如你可以用 MAXIMA  来代替 Mathematica，用 octave 代替 Matlab ……而且你可能会发现它们很多时候比它们对应的商业程序好！</span></p><p><span>用惯了 Windows 的人可能会发现，Windows 下有些东西在 Linux 下没有很相似的，或者你找到很多类似的，但是它们每一个比起 Windows 的那个程序都要差很多，那么原因有两种可能性：</span></p><ol start='' ><li><p><span>有一个完全类似的程序，但是由于它乍一看不漂亮，被你忽略了。</span></p><p><span>用惯了 Windows 的用户最容易出现这种情况，因为 Windows 的程序看起来都是相当漂亮的。所以大部分人看到像 Mutt, lftp 这样的程序根本就不会考虑用它们，而另外去找一些像 Windows 程序的程序来用。</span></p><p><span>这是一个误区，要知道：很多时候外表不是最重要的。Mutt，lftp  是经过千锤百炼的优秀程序，写一个界面对于它们的作者显然是小菜一碟，他们没有漂亮的界面是有原因的(以后讨论)。有些程序虽然看起来很漂亮，但是它们是一些初学编程的人写的，用起来非常恼火。现在由于 Gtk, Qt 的诞生，Linux  下开发图形界面程序越来越简单，很多初学者都可以随手编出一些漂亮不中用的程序（我以前也写过：）。如果你在这样的程序中间挑来挑去，永远也找不到你满意的。当然也有一流的程序用 Gtk 和 Qt，比如 GVIM 就可以用 Gtk 作为图形界面，我还知道 Synopsys 一些程序用了 Qt。</span></p><p><span>我曾经也犯过这样的错误，从外表区分一切。结果优秀的 FVWM, lftp, Mutt, wget 都被我忽略过。当我被别的不稳定的程序惹恼了，找回它们的时候，真后悔当初怎么不多试试就把别人删了。</span></p><p><span>我第一次看到 FVWM 觉得它只不过是一个有很厚很难看边框的东西，可是现在，我的同学看到我的 FVWM 都说：“哇！真漂亮。”  你甚至可以让 FVWM 比 Windows XP  还漂亮。某些初次见面没有迷住你的程序，很有可能让你二见钟情，以至于伴你终生哟。这就是所谓的魅力吧 :)</span></p></li><li><p><span>有另一种完全不同的方式可以达到相同的目的，甚至更好。</span></p><p><span>很多人很关心 Open Office, Star Office, AbiWord, ... 他们多么盼望有一天某一个 Linux  程序能够完全兼容的打开一个复杂的 doc 文档。但是你不需要再等了，鼓起勇气，你今天就能得到一个比 Office 的 Word 和  PowerPoint 更好的东西。</span></p><p><span>你看看那些高水平的学术杂志，论文，那些大学教授的网页，那些漂亮的幻灯片，它们是什么做的？原来 UNIX 用户早就有非常方便的 troff, LaTeX, SGML, XML 等东西可以处理文档，而且它们比起 Word 都要方便的多。</span></p><p><span>很多教授留着 Windows 在硬盘上的原因无非是为了用 PowerPoint。我见过一个教授，他的 Windows  笔记本电脑上除了 PowerPoint 什么都没有。有一天演示的时候，他指着堆乱字符说：“对不起，这是一个公式……怎么每次都是这样……”  其实有比 PowerPoint  好很多的东西可以制造幻灯片，你可以用最简单的方法制造世界一流效果的论文和幻灯片，可以包含漂亮的数学公式。你待会儿可以看看我的</span><a href='http://www.ctex.org/documents/shredder/tex_frame.html'><span>TeX网页</span></a><span>。</span></p></li></ol><p><span>下面我介绍一些使用 Linux 的经验。</span></p><h2 id='使用配置文件定制程序行为'><span>使用配置文件定制程序行为</span></h2><p><span>很多人喜欢用鼠标点菜单来配置程序，可是，鼠标虽然是很好的工具，但是它的表达能力是有限的。你不可能光用鼠标就让电脑完全明白你的意思，它毕竟只有3个按钮。看看我的</span><a href='http://www.ctex.org/documents/shredder/metapost.html'><span>MetaPost</span></a><span>页你就能体会到鼠标的这一弱点。所以我们虽然很喜欢鼠标，但是却不能完全依赖它。</span></p><p><span>看看优秀的 UNIX 程序，XFree86, FVWM, VIM, Emacs, proftpd, Mutt, wget,  tin, ...  没有一个不是用配置文件来设置选项的。为什么这些程序没有方便的菜单可以用来配置？难道它们的设计者就那么低能，连个图形配置界面也写不出来？</span></p><p><span>当然不是。因为图形界面配置方式的能力是极其有限的，而配置文件里的符号的表达能力却是无限的。用图形界面配置这些程序的话，如果你想达到配置文件的效果，你需要成百上千的菜单，checkbox, radio button, ... 到时候你根本没办法找到你需要修改的地方了！</span></p><p><span>配置文件其实比菜单方便。你在配置文件里可以完全发挥编辑器的强大功能。你可以任意搜索到你需要的配置选项。配置文件的语法都有很多相似之处，一般就是一些命令，设置一些变量，参数，…… 一旦用会了一个，其它的也就容易理解了。</span></p><p><span>你有没有发现有些菜单配置的程序，连IP地址都会被分开在4个文本框里，你不能一次性把外面的IP地址拷贝进去，也不能拷贝出来，也不能整体删除，多麻烦。要是以太网物理地址，那岂不是要分成6个文本框！不知道这种程序的设计者是怎么想的，竟然还有很多人模仿这种方式。</span></p><p><span>配置文件对程序设计者有较高要求。你发现了吗，写一个使用配置文件的程序要比写一个菜单配置的程序难度大。有些程序的配置文件里，有命令，有变量，有正则表达式，……  它们的顺序可以是任意的。你想想的设计难度有多大。而一个菜单配置的程序，所有的选项都被设计者固定下来了，你只有那么几个选择，它的设计难度要低的多。比如那种把IP地址分成4个文本框的程序，只不过是为了避免写代码去验证用户输入的IP的合法性，因为这样你就不可能输入 12344.343#2344.430 这样非法的 IP，但是这给了用户很多不方便。</span></p><h2 id='请用-xwindow'><span>请用 Xwindow</span></h2><p><span>计算机界门派之分很多。很有特点的就是 CLI(命令行界面) 和 GUI(图形用户界面) 了。CLI 的狂热份子声称永远不用  X。我上次在实验室看到一个同学用一个 SecureCRT 登录到 Sun 机器，然后用一个 vanilla vi 编辑程序，我建议他启动一个  GVIM 过来显示在 Exceed 上可以有语法加亮。但是他坚决反对，说：“高手不用X。你想想，要是我在一个很慢的网络连接怎么用  X？而且好多服务器没有装 X 程序。” </span></p><p><span>但是我们实验室的网速可够快，Windows 机器都有 Exceed 啊，而且 Sun 机器有全套 X 客户程序包括  GVIM。他说他是 CLI 的坚决拥护者，但是他却在用 SecureCRT 这种 GUI 程序，他后来打开了好几个  SecureCRT，每次从文本框输入地址，用户名和密码，从下拉菜单选择  &quot;SSH2&quot;，然后点击“Connnect”。他还不断的夸SecureCRT是“网络管理员投票选出的最受欢迎的登录方式”。</span></p><p><span>他其实不懂 Xwindow 的原理，没有明白 Xwindow 的好处，或者是他被 Gnome 和 KDE 那样不稳定的  &quot;Xwindow&quot; 给弄烦了。console 方式对于网络管理员可能比较方便，有时甚至是唯一的选择。但是，对于普通人，不用 Xwindow  显然是非常不方便的，想一想你连函数曲线都不能画出来！在X的xterm, rxvt下就能完成 console 的所有功能，何乐而不为？</span></p><p><span>其实何必分什么 GUI 和 CLI，UNIX 和 Xwindow 都是工业标准，它们从设计那天开始就有非常灵活的用法，各个程序，不管是 GUI 还是命令行的都可以互相协作。UNIX 和 X 是一家，何必搞的那么偏激，非此即彼？我就是坚定不移的“两面派”。</span></p><h2 id='理解-unix-的设计思想'><span>理解 UNIX 的设计思想</span></h2><p><span>UNIX设计的思想就是，让每个程序都只擅长于一项专门的工作，然后让它们合作，形成一个可靠的，强大的，灵活的系统。Xwindow也继承了这种好传统。</span></p><p><span>这恐怕就是Windows和其它操作系统望尘末及的地方了。UNIX 程序设计之统一，配合之完美，真使我难以置信！shell,  grep, find, awk, sed, make, Perl, Emacs, vi, tin, Mutt, ...  它们是那么的具有一致性！你一旦学会了 sed 的正则表达式，其它程序基本上都能用了。你一旦学会了 vi 和 VIM,  你会发现它的操作是那么的有规律性，似乎vi的设计者在几十年前就已经设计好了 VIM 在今天的完美而统一的操作方式！而且vi的操作还体现在  Mutt, tin 等很多程序中。你甚至可以把 bash 设置为 vi  的输入方式来输入命令行，我就是这么做的。一个程序可以调用另外一个程序来得到数据，可以把数据交给它处理后返回来，可以在自己的窗口里“嵌入”另外一个程序。</span></p><p><span>比如我用 Mutt 的时候，我可以用 VIM 也可以用 pico 来编辑邮件，我可以用 ImageMagick 也可以用 xv  来显示附件里的图片，我可以用 lynx 把 HTML 附件转成文本嵌入窗口中，我也可以把 HTML 附件交给 Mozilla 图形显示。我可以让 GnuPG 帮我把邮件进行数字签名和加密，我也可以用其它 PGP 程序。我想让 Postfix 而不是 sendmail 帮我发出邮件，我想让 fetchmail 帮我收邮件，转发给 postfix，然后被我自己写的Perl过滤器处理……  这一切我都可以办到！我可以选择我最喜欢的专门的程序来完成专门的工作，然后把它们结合在一起，我也可以分别得到它们的好处。</span></p><h2 id='linux-应用程序简介'><span>Linux 应用程序简介</span></h2><p><span>现在我告诉你怎样用 Linux 处理很多事情。</span></p><p><span>半年以前我由于中文老是配置不好，一直是双系统，不时需要重起到 Win2k 来处理汉字。后来我找到了 miniChinput,  XSIM 和 SCIM 输入法。这下可以处理汉字了。而且 VIM 和 Emacs 对汉字支持越来越好。我的大部分文本是用 VIM  编辑的，包括程序，信件，网页，LaTeX 论文，MetaPost 图形。</span></p><p><span>我不用 Word 这样的程序写论文，而是用 LaTeX，因为这是世界上效果最好，最方便的论文工具，是大多数学术杂志要求的格式。幻灯都是用 ConTeXt 做的，用起来很简单，而且效果非常漂亮。你可以看看我的</span><a href='http://www.ctex.org/documents/shredder/tex_frame.html'><span>TeX介绍</span></a><span>。</span></p><p><span>至于绘图，你可以用很多可视化的工具，比如 xfig，dia。但是对于我来说，任何可视化的工具都不能完成</span><a href='http://www.ctex.org/documents/shredder/metapost.html'><span>某些任务</span></a><span>，我需要一种可以精确描述图形的语言。我找到了</span><a href='http://www.ctex.org/documents/shredder/metapost.html'><span>MetaPost</span></a><span>。它简单又好用，而且效果是一流的，生成的 eps 可以随意缩放。我的插图，如果不是图像，都是 MetaPost 画出来的。</span></p><p><span>我曾经抱怨 mozilla-mail 经常突然消失，损坏我好几封快要完成的信件。后来我发现 mozilla 的邮件处理程序确实是不稳定的，功能又弱，有经验的 UNIX 用户都不用这样的程序。</span><a href='http://www.ctex.org/documents/shredder/mutt_frame.html'><span>Mutt</span></a><span> 是一个非常稳定可靠的 UNIX 邮件处理程序，而且功能非常强大。</span></p><p><span>我曾经为 Gnome 和 KDE 的不稳定而烦恼。现在我找到了非常强大的 </span><a href='http://www.ctex.org/documents/shredder/fvwm_frame.html'><span>FVWM</span></a><span>。KDE，Gnome 也能和 FVWM 一起工作。虽然 Gnome 和 KDE 总体不稳定，但是某些部件程序还不错，很多 gtk, Qt 的程序也很不错，它们很多都是可以独立于这些桌面环境运行的。</span></p><p><span>我曾经惭愧的使用着盗版的 Mathematica，后来我发现了自由的 MAXIMA，经过一段时间的学习，我发现 MAXIMA 比 Mathematica 更严密，更方便，更自然，它是更适合处理数学问题的工具。</span></p><h2 id='几点忠告'><span>几点忠告</span></h2><ol start='' ><li><p><span>不要“玩 Linux”</span></p><p><span>很多人用 Linux 的时候会感觉很迷茫，该用哪个发行呢？是不是我少装了什么？怎么升级这么快啊！怎么这么不稳定！每当遇到新的软件他就想试用，每当新的版本出现，他就更新，然后用鼠标在新的菜单里选择从来没见过的程序来用用。</span></p><p><span>其实你是为了Linux而使用Linux，而没有找到正确的理由来利用 Linux。你首先要明确用电脑的目的，你用它是为了解决你的实际问题，而不是为了学习安装操作系统，不是为了测试哪个版本好用，不是为了“赶上潮流”，更不是因为你硬盘太大了，你想多占点空间。</span></p><p><span>如果你启动了电脑之后不知道应该干什么，那么最好先不要用电脑，因为你可能有更重要的事情需要做。</span></p></li><li><p><span>不用挑剔发行版本</span></p><p><span>很多人刚开始用 Linux  的时候，总是在怀疑别的发行版本是否比自己正在用的这个好，总是怀疑自己以后时候会失去支持，不得不换用别的发行。所以很多人今天是  Redhat，明天又换成了 debian, 一会儿又是 gentoo, …… 甚至有的人在一台机器上装了两个版本的  Linux，然后比较哪一个好。</span></p><p><span>其实你完全没有必要这样做，任何发行，只要你熟悉了，你在上面的工作方式几乎是不会受到任何影响的。你常常听说 Debian 的更新比  Redhat 快，包比 Redhat 多，但是你可以比 Debian 更新还要快，直接到你需要的程序的主站点下载源码来编译就是了。</span></p><p><span>Debian, TurboLinux, SuSE, Redhat, Gentoo, ... 任何一个版本都是不错的。</span></p></li><li><p><span>不要当“传教士”</span></p><p><span>很多人在讨论区不断的引起 &quot;Linux vs. Windows&quot;  之类的讨论，甚至争的面红耳赤，这是没有必要的。因为各人的需要不同，生活的环境不同，你不可能得到一个定论。我们需要尊重别人的选择，这是你在进行任何对工具的讨论前需要提醒自己的事情。面对一些容易引起争论的东西：Word 和 TeX；Emacs 和 VIM；MAXIMA，Mathematica 和 Maple；Gnome，FVWM 和 KDE；Mutt 和  Pine …… 一定要冷静。</span></p><p><span>你需要关心的不是你的工具是什么，而是你用它做了什么。精通 Linux 并不说明任何问题，因为它只是一个工具而已。如果你用  Windows 能很好的完成你的任务，那你就没有必要费时间去熟悉 Linux。直到有一天你发现一项任务只有 Linux  才能完成的时候再换也不迟，因为你身边的 Linux 的爱好者一定会很乐意的帮助你。</span></p><p><span>并不是喜欢一种东西就必须反对其它的。世界需要多样性，人们都需要FUN。用自己的兴趣去压制别人的，就会毁掉所有的兴趣。个人喜欢什么就用什么，完全没必要为这个争论。</span></p><p><span>不要做“传教士”！你说我现在就是在“传教”？冤枉啊~</span></p></li><li><p><span>直接从源码安装程序</span></p><p><span>很多人放着最新的源码不用，等着有人帮他做出 rpm, deb, 才能安装。我说你为什么不用源码编译，这样版本比 rpm 高的多，有很多新功能，而没有烦人的依赖关系。可是他说：“要是我用源码编译安装，卸载的时候就不方便了，会留下很多垃圾。” </span></p><p><span>为什么程序还没有安装你就想到卸载？难道你不知道这个程序是用来做什么的？你应该改变到处找程序来试用的作法，而应该先了解一下到底那些程序有同样的功能，听听别人的意见，看看它们各有什么长处和短处，然后挑一个最适合你的程序来用。</span></p><p><span>从源码编译安装程序，不但比你装rpm更适合自己的机器设置，而且它们一般会装到 /usr/local  目录，这样你以后如果换硬盘重装系统，也可以把以前 /usr/local 下的程序原封不动拷贝过去用。我的 /usr/local 下有 2G  之多的程序，你想要是我有一台新机器要重新安装，然后配置，得花费多少时间？实际上我曾经通过网络把它们传到一台新机器上，然后就出去吃晚饭，回来时我就得到了另一台一摸一样的 Linux 机器。</span></p><p><span>确实要卸载 make install 的程序怎么办呢？答案是直接删掉。别以为直接删掉程序会留下垃圾，引起“系统不稳定”。(btw: 这是谁教你的啊？呵呵。) make install 无非就是把可执行程序放在 /usr/local/bin, 把某些函数库放在  /usr/local/lib，把数据文件放在 /usr/local/share  下一个它自己的目录，你把这些东西都删掉就行了，不会留下垃圾，即使真的留下一点文件没有删掉也占不了多少空间，更不可能引起系统不稳定。UNIX  就是这么简单 :)</span></p><p><span>但是有几个程序不建议从源码安装，它们是 Mozilla, Open Office, ... 它们编译时会占用你几个G的空间和好几个小时的时间，这种花费我觉得是不值得的，因为你不能从编译得到更多好处，不如直接安装编译好的版本。</span></p></li><li><p><span>不要盲目升级</span></p><p><span>不知道这是心理作用还是什么，有的人看到比较大的版本号，就会很想换成那个。很多人的 Redhat 本来配置的很舒服了，可是一旦 Redhat  发行新的版本，他们就会尽快下载过来，然后选择升级安装。结果很多时候把自己原来修改得很好的配置文件给冲掉了。新的软件又带来了新的问题，比如有一次我的 rxvt 升级到 2.7.8 就跟 miniChinput 冲突了，升级到 Redhat 8.0，发现 xmms  居然缺省不能放mp3了，XFree86 的 xtt 模块在 I810 上有新的 bug，会导致 Mozilla 突然退出。 </span></p><p><span>如果你已经配置好了一切，千万别再整体升级了，这会浪费你很多很多时间的，不值得。如果需要的话，你可以只把某些部件升级，比如内核，glibc, gcc, XFree86，... </span></p></li><li><p><span>使用 UNIX 的经典程序</span></p><p><span>好的程序一般都是可以很方便的在很多种 UNIX 上移植的，bash, VIM, Emacs, Mutt, FVWM, xterm,  都是这样。如果你用这些程序，你就可以在 Sun, HP, ... 等工作站上也装上，这样你在各种机型上的工作环境就几乎完全一样了！你不需要在  Sun 上面用 CDE，在PC上又换成 KDE，在它们上面都装一个 FVWM，使用相同的配置文件，就能得到一致的界面。</span></p><p><span>这些程序大部分都是久经考验的，是经过很多人多年开发的结果。它们功能完善，各种情况都考虑周全，绝对是你的好助手。</span></p></li><li><p><span>不要配置你不需要的东西</span></p><p><span>如果你只想做一个像我这样的普通用户，主要目的是用 Linux  来完成自己的科研任务和日常工作，那就可以不用系统管理员或者网络管理员的标准来要求自己，因为当一个系统和网络管理员确实很辛苦。普通用户学习那些不经常用到的复杂的维护系统的工具，其实是浪费时间，学了不用是会很快忘记的！</span></p><p><span>我不是一个合格的网络管理员，我的服务器都只设置了我自己需要的功能，设置好 ssh, ftp  已经足够了，那样可以省去我很多麻烦。我从来不过度考虑“安全”，因为 Linux 缺省已经很安全了。我没有磁带机，就不用管 tar  的那些稀奇古怪的参数了，czf, xzf, ztf 已经可以满足我所有的需要。sed, awk, ... 我也只会几种常用的命令行。</span></p></li><li><p><span>不用忙着看内核源码</span></p><p><span>除非你想研究操作系统，否则还是先把怎么使用 Linux  掌握好再说吧。我以前看了那么多内核源代码，写了驱动程序，结果最后发现我还是一只很多事情不能用 Linux 解决的菜鸟 :)  吸取我的教训吧，你应该首先掌握 shell，Xwindow 的使用和原理，它们可不比内核简单。</span></p></li></ol><h2 id='处理日常事务的-linux-程序和它们的配置'><span>处理日常事务的 Linux 程序和它们的配置</span></h2><p><span>下面列出我常用的一些 Linux 程序。一个列表里可能有很多，那是为了方便你来选择，我列出了比较信得过的。但其实很多只有第一个是我真正在用的，因为我不喜欢试用程序。</span></p><p><span>我建议一些简单的使用方式，一般就一句话。</span></p><ul><li><span>Shell: bash。它结合了 csh 和 ksh 的优点，并且有 readline 功能，你可以随意绑定自己的键盘，使用 emacs 或者 vi 的方式都可以帮助你高效的输入命令行。info bash 可以得到非常详细的 bash 说明书，为了高效的使用  bash，你最好看看这个。你可以按照这个说明自己写一个 .bashrc，你还可以写一个 .inputrc 来配置 readline  库，这样其它使用 readline 的程序也可以使用同样的方法输入，非常好。</span></li><li><span>编辑器： VIM, Emacs。VIM 是 vi 的改进，建议先熟悉一下 VIM，因为很多其它程序比如 tin, Mutt,  Firebird BBS 使用类似 VIM 的键绑定，VIM 的键帮定跟正则表达式很有关系，比如 &quot;^&quot; 和 &quot;$&quot;。在 UNIX  机器上，有时你被迫只能用 vi，而 vi 是 modal 的，如果先熟悉了 Windows 的编辑器会比较难以接受 VIM  的工作方式，所以你需要适应一下。</span></li><li><span>程序开发： gcc, make, ld, Scheme48, gcl, j2sdk, Perl, Python, Tcl/Tk ... 这个的配置没什么好说的，自己用什么就去看看文档吧。</span></li><li><span>文档工具：LaTeX, ConTeXt，</span><a href='http://www.texmacs.org'><span>TeXmacs</span></a><span>。LaTeX 可以用来写论文或者简单的幻灯片，ConTeXt 可以作出非常漂亮的屏幕文档。TeXmacs  可以非常舒服的，所见即所得(WYSIWYG)的编辑文档，它比 Word，WordPro，WPS，lyx 都要  WYSIWYG，它才是真正的WYSIWYG，非常漂亮。配置方法看</span><a href='http://www.ctex.org/documents/shredder/tex_frame.html'><span>我的 TeX 网页</span></a><span>。</span></li><li><span>绘图工具：</span><a href='http://www.ctex.org/documents/shredder/metapost.html'><span>MetaPost</span></a><span>。这个语言太强了，以至于我只用它了。你不熟悉的话可以用 xfig, dia 来画一些流程图之类的图片。配置方法看</span><a href='http://www.ctex.org/documents/shredder/metapost.html'><span>我的 MetaPost 网页</span></a><span>。</span></li><li><span>图像处理：ImageMagick。其中的 import 程序可以屏幕抓图，convert 程序可以转换图像格式，display 可以显示图片和简单编辑(缩放，换质量，转格式，简单绘图，简单虑镜)。通常我就这么点需要。如果你要更强大的图像工具可以用 Gimp, 它几乎和  Photoshop 差不多。自己man一下 import, convert 就知道怎么用了，display  显示图片后在图片上点击鼠标会有菜单，很简单的，不多说了。</span></li><li><span>自动管理工具：make。我可以用make来自动编译程序，自动编译文档，自动更新插图…… 全自动，而且不会让机器重复劳动。你看看 info make，那是一份非常详细的教你怎么写 Makefile 的文档，比任何其它书籍都好。</span></li><li><span>数值计算程序：Octave。这个程序基本上可以实现 Matlab 所有的数值计算功能，而且语法跟 Matlab 一样。</span></li><li><span>代数计算程序：</span><a href='http://sourceforge.net/projects/maxima'><span>MAXIMA</span></a><span>。这个程序基于世界上最老的计算机代数系统之一: Macsyma 系统。它是用 Common Lisp 实现的。很多现在的符号计算程序比如 Maple 都从 MAXIMA 身上学到很多东西。它现在以GPL发行，永远是一个自由软件。</span></li><li><span>加密程序：GnuPG。我的 PGP 密钥就是它搞出来的。</span></li><li><span>打包，压缩程序。什么都有: tar, gzip, bzip2, zip, rar, ... 对于 tar 通常你只需要知道3种参数: zxf(解包)，zcf(打包), ztf(看包里有什么文件)。其它的就不多说了。</span></li><li><span>虚拟光驱程序。Linux 不需要虚拟光驱程序，要看一个iso文件的内容，直接 mount 就行了。比如 mount -o  loop mycd.iso /mnt/cdrom。要把光盘做成一个iso文件，用dd就行了，比如如果你的光驱是 /dev/hdb，那么: dd  if=/dev/hdb of=mycd.iso 就可以做一个光盘镜像文件叫做 mycd.iso.</span></li><li><span>ftp 服务器：proftpd, vsftpd。proftpd 功能很强，但是我只用了最简单的一种设置。</span></li><li><span>WWW 服务器：apache。(我一般没有开)</span></li><li><span>ftp 客户程序：lftp，ncftp。它们都是文本方式操作的，但是比起图形界面的方便的多。比如 lftp 几乎具有 bash 的所有方便功能，Tab 补全，bookmark, queue, 后台下载，镜像…… Linux 也有图形界面的 ftp  客户程序，但是大多不稳定，有很多问题。这就是很多人抱怨 Linux 不如 Windows 的一个小原因。还有很多人用 Wine 模拟  Windows 的 leapftp，其实 lftp 比 leapftp 好很多，你需要的只是适应一下。它的工作方式很像  bash，所以建议你熟悉一下 bash。</span></li><li><span>自动下载工具：wget。它非常稳定，有一次我下载一个程序，用 IE 和 Mozilla 下载回来的文件都是坏的，最后还是  wget 可靠的传输了数据。用它甚至可以镜像整个网站，比起 WebZip 这样的 Windows  程序强多了，而且不会因为你不付钱就在下载回来的网页里强制插入广告。info wget 可以得到完整的使用说明。</span></li><li><span>虚拟终端：rxvt, xterm, gnome-terminal, mlterm, ... 这些配置都使用 Xwindow 程序的标准配置方法，在 .Xdefaults 里写一些东西。</span></li><li><span>X server: XFree86</span></li><li><span>窗口管理器：FVWM。编译加入了 libstroke。详细使用方法见</span><a href='http://www.ctex.org/documents/shredder/fvwm.html'><span>我的FVWM网页</span></a><span>。</span></li><li><span>中文输入：</span><a href='http://www.fcitx.org'><span>fcitx</span></a><span>。它支持拼音，双拼，五笔和二笔输入。安装及其方便，不依赖任何特殊的库。另外推荐你还可以用 XSIM，SCIM。</span></li><li><span>email 处理：Mutt + sendmail(Postfix) + fetchmail。配置方法见</span><a href='http://www.ctex.org/documents/shredder/mutt_frame.html'><span>我的 Mutt 网页</span></a><span>。</span></li><li><span>看 PDF, PS, DJVU 文件：Acrobat Reader, xpdf, GhostScript, gv, djvu工具包和 netscape 插件。它们都是可以免费得到的。</span></li><li><span>看CAJ, 超星文档。CAJviewer 好像没有 Linux 版本，不知道为什么。如果找不到PDF，PS 或 DJVU，直接去图书馆借最好，屏幕阅读伤眼睛 :P</span></li><li><span>看网页：Mozilla, Phoenix, lynx。Mozilla-Xft 的显示效果比 IE 好很多。</span></li><li><span>英汉字典：IBM智能词典，星际译王。</span></li><li><span>编辑网页：我用 VIM 直接写 HTML。你如果想要图形方式的可以用其它的比如 WebSphere，screem, BlueFish，它们可以构造更复杂的网页。</span></li><li><span>登录其它 UNIX, Linux 机器：openSSH, telnet。我喜欢用 openSSH 把其它机器的 X 程序通过 ssh 加密的隧道传到我机器上显示。</span></li><li><span>登录 Windows2000 server 的 display service: rdesktop，...我有一天试了一下，不错。后来就没有用过了。</span></li><li><span>同步程序：rsync。我用 rsync 通过 ssh 来跟某些机器同步数据，或者做自己机器上不同目录间的同步。</span></li><li><span>上BBS：rxvt(或任何一种终端) + telnet + </span><a href='http://www.ctex.org/documents/shredder/programs.html#bbsbot'><span>chatbot</span></a><span>(helloooo 机器人的程序)</span></li><li><span>QQ, ICQ, MSN messenger: 我没有 QQ, ICQ 或 MSN。不过你可以用 Gaim, 它同时支持 QQ, ICQ 和很多其它的即时通信方式。ICQ 用户也可以用 Licq。</span></li><li><span>放录像：MPlayer, RealPlayer。MPlayer 太好了，直接就可以放 VCD, DVD, divx, wma, wmv ... rm 最好还是用 realplayer 放，它也是免费的。</span></li><li><span>放音乐： xmms(mp3,ogg都可以), mpg321(放mp3), ogg123(放ogg)。mpg321 不如 xmms 管理音乐文件那么方便，但是有时我还是用 mpg321 放 mp3 作为背景音乐，因为懒得开一个xmms窗口 :)</span></li><li><span>游戏：我已经很久没有玩电子游戏了。不过我觉得 KDE 的那个 ksokoban(推箱子)，很好玩。大型游戏比如 Quake 也有 Linux 版本。</span></li><li><span>看 Word 文档或PPT。简单的就用  OpenOffice。偶然遇到太复杂的doc,ppt文档用OpenOffice打不开，就请人把它转为 PDF 或 PS(PostScript)  再给我，文档里没有特殊的格式干脆就用文本吧，何必那么麻烦。还好，我们系发通知都用文本，PDF，甚至图片。我觉得大家应该体谅贫穷的没有 Word  的用户，不要以为每个人都用盗版软件。PDF 和 PS 是世界通用的跨平台的文档交换格式，建议大家把 Word, PPT 转化成 PDF 或 PS 再给别人看。</span></li></ul><p><a href='http://www.ctex.org/documents/shredder/comp.html'><span>返回</span></a></p><hr /><center>wirtten by stceum on 2020-12-29 16:58:01 08:00</center><hr /><p><a href='./index.html'><span>&lt;back</span></a></p></div></div>
+</body>
+</html>
